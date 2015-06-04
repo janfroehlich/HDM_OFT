@@ -46,7 +46,7 @@ HDM_OFT_Utils.OFT_DispSubTitle(strcat('ID: ',OFT_In_TaskID));
 HDM_OFT_Utils.OFT_DispSubTitle(strcat('client data: ',OFT_In_ClientData));
 HDM_OFT_Utils.OFT_DispSubTitle(strcat('output directory: ',OFT_In_ServerOutDir));
 
-OFT_LogFileName=strcat(OFT_In_ServerOutDir,OFT_In_TaskID,'.status.xml');
+OFT_LogFileName=strcat(OFT_In_ServerOutDir,'/',OFT_In_TaskID,'.status.xml');
 OFT_ProgressLogger=HDM_OFT_XML_Logger(OFT_LogFileName);
 OFT_ProgressLogger.LogUserMessage('start camera characterization');
 
