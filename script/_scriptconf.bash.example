@@ -1,0 +1,6 @@
+# create a copy without the trailing ".example" in the filename.
+
+UPLOADS_DIRECTORY="/Users/user/uploadtest"
+PROCESSING_DIRECTORY="/Users/user/tmp/matlab-process-temporary"
+MATLAB_CODE_DIRECTORY="/Users/user/HDM_OFT"
+MATLAB_EXE="/Applications/MATLAB_R2015a.app/bin/maci64/MATLAB"
