@@ -1,0 +1,84 @@
+// ARRI D21 IDT for D21 linear files
+// with camera EI set to n.n. ISO
+// camSPECS measured camera spectral sensitivity
+//
+// eye One Pro measured Gretag Macbeth Color Checker
+//
+// scene adopted white spectrum estimated via D polynome and set to Illuminant:
+%IDT_ILLUMINANT%
+//
+// Woolfe/Spaulding/Giorgianni space for reconciliation of
+// scene adopted white chromaticity and ACES neutral chromaticity
+// (cf. U.S. Patent No. 7,298,892)
+//
+// Written by Open Film Tools, Media University Stuttgart
+%IDT_DATE%
+
+//utilities
+
+float
+min(float a, float b)
+{
+    if(a<b)
+    {
+        return a;
+    }
+    else
+    {
+        return b;
+    }
+}
+
+float
+clip(float v)
+{
+    return min(v,1.0);
+}
+
+float
+gamma(float v)
+{
+    return v;
+}
+
+//main transformation
+
+void main
+(       input varying float rIn,
+        input varying float gIn,
+        input varying float bIn,
+        input varying float aIn,
+        output varying float rOut,
+        output varying float gOut,
+        output varying float bOut,
+        output varying float aOut)
+{
+
+    // camera system white balancing and scaling factors
+%const float b[] = { b1, b2, b3 };
+    
+    // matrix converting white balanced scaled camera system RGB response values
+    // to ACES RGB relative exposure values
+%const float B1[][] =     {{ B11, B12, B13 },
+%const float B2[][] =     { B21, B22, B23 },
+%const float B3[][] =     { B31, B32, B33 }};
+                            
+    const float b_min = min(b[0],min(b[1],b[2]));
+    const float e_max = 1.0;
+    const float k = 1.0;
+
+    float normBE = b_min * e_max;
+
+    float clippedRGB[3];
+
+    clippedRGB[0]= clip((b[0] * gamma(rIn)) / normBE);
+    clippedRGB[1]= clip((b[1] * gamma(gIn)) / normBE);
+    clippedRGB[2]= clip((b[2] * gamma(bIn)) / normBE);
+
+    rOut = k * (B[0][0]*clippedRGB[0]+B[0][1]*clippedRGB[1]+B[0][2]*clippedRGB[2]);
+    gOut = k * (B[1][0]*clippedRGB[0]+B[1][1]*clippedRGB[1]+B[1][2]*clippedRGB[2]);
+    bOut = k * (B[2][0]*clippedRGB[0]+B[2][1]*clippedRGB[1]+B[2][2]*clippedRGB[2]);
+
+	aOut = 1.0;
+
+}

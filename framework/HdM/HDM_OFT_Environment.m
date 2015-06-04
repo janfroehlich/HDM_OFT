@@ -1,0 +1,17 @@
+classdef HDM_OFT_Environment
+    
+    methods(Static)
+        function out=GetRootDataDir()
+            out='F:\usr\fuchs\OFTP\002Development\MatLab';
+        end
+    end
+    
+    properties
+        OFT_RootDataDir='';
+        OFT_RootScriptDir='';
+        OFT_ConstraintsPath='';
+        OFT_ProcessPath='';
+        OFT_StatisticsPath='';
+    end
+    
+end

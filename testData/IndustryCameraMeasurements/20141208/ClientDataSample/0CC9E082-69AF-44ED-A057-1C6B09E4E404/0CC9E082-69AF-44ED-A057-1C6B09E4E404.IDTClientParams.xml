@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<OFT-IDT-Creation-Params>
+  <ReportLog>
+    <In>
+      <Production>Dr. Mabuse</Production>
+      <Company>UFA</Company>
+      <Time>27.01.2015 18:06:35</Time>
+      <Operator>Andreas Karge</Operator>
+      <e-mail>karge@hdm-stuttgart.de</e-mail>
+    </In>
+  </ReportLog>
+  <DeviceLog>
+    <In>
+      <Camera>PointGray FLEA</Camera>
+      <Spectrometer>XRite EyeOne</Spectrometer>
+      <Comment>ISO default
+no post processing
+no WB</Comment>
+      <Sensor>
+        <Diagonal>16</Diagonal>
+      </Sensor>
+      <Lens>
+        <Stop>8</Stop>
+        <FocalLength>8</FocalLength>
+      </Lens>
+    </In>
+  </DeviceLog>
+  <IDTCreationConstraints ProcessID="2">
+    <In>
+      <WhitePoint>D65</WhitePoint>
+      <ErrorMinimizationDomain>Luv</ErrorMinimizationDomain>
+      <PatchSet>Gretag Macbeth Color Checker</PatchSet>
+      <CIEStandardObserver>CIE1931</CIEStandardObserver>
+    </In>
+  </IDTCreationConstraints>
+  <SpectralResponse ProcessID="1">
+    <In>
+      <LineCalibrationSpectrum>line_cal_spectrum-i1Share01.cxf.xls.csv.mod.xlsx</LineCalibrationSpectrum>
+      <LineCalibrationImage>line_cal_image-fc2_save_2014-12-08-190459-0000.tif</LineCalibrationImage>
+      <LightCalibrationSpectrum>light_cal_spectrum-i1Share.cxf.mod.xlsx</LightCalibrationSpectrum>
+      <LightCalibrationImage>light_cal_image-fc2_save_2014-12-08-191731-0000.tif</LightCalibrationImage>
+    </In>
+  </SpectralResponse>
+  <Evaluation ProcessID="3">
+    <In>
+      <TestImage>testimage-mmCenter.tif</TestImage>
+    </In>
+  </Evaluation>
+  <PreLinearisaiton ProcessID="0">
+    <In>
+      <LinearizationFile>linearization-140513_OETF_2K_v1_noIndex.tif</LinearizationFile>
+    </In>
+  </PreLinearisaiton>
+</OFT-IDT-Creation-Params>

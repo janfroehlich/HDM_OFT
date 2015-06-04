@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<OFT-IDT-Creation-Params Version="1.0.0.0">
+   <ProgressLog>
+      <Out>
+         <Message>
+            <UserMessage>start camera characterization</UserMessage>
+            <Level>User</Level>
+            <Date>2015 05 18  3.59.37 PM</Date>
+         </Message>
+         <Message>
+            <UserMessage>estimate camera linearization</UserMessage>
+            <Level>User</Level>
+            <Date>2015 05 18  3.59.38 PM</Date>
+         </Message>
+         <Message>
+            <UserMessage>estimate camera spectral response</UserMessage>
+            <Level>User</Level>
+            <Date>2015 05 18  3.59.38 PM</Date>
+         </Message>
+         <Message>
+            <UserMessage>compute IDT profiles</UserMessage>
+            <Level>User</Level>
+            <Date>2015 05 18  3.59.41 PM</Date>
+         </Message>
+         <Message>
+            <UserMessage>finish camera characterization</UserMessage>
+            <Level>User</Level>
+            <Date>2015 05 18  3.59.47 PM</Date>
+         </Message>
+      </Out>
+   </ProgressLog>
+</OFT-IDT-Creation-Params>
