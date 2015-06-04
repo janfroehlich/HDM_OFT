@@ -1,6 +1,9 @@
 # create a copy without the trailing ".example" in the filename.
 
+# For OS X you may need to specify the library path for matlab to load correctly.
+export DYLD_LIBRARY_PATH="/Applications/MATLAB_R2015a.app/sys/os/maci64:$DYLD_LIBRARY_PATH"
+
 UPLOADS_DIRECTORY="/Users/user/uploadtest"
 PROCESSING_DIRECTORY="/Users/user/tmp/matlab-process-temporary"
 MATLAB_CODE_DIRECTORY="/Users/user/HDM_OFT"
-MATLAB_EXE="/Applications/MATLAB_R2015a.app/bin/maci64/MATLAB"
+MATLAB_EXE="/Applications/MATLAB_R2015a.app/bin/matlab"
