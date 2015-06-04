@@ -1,5 +1,4 @@
 .DS_Store
 testData/testproduktion
-workingDir/IDTProcess/testStat
-workingDir/IDTProcess/test
+workingDir/
 script/_scriptconf.bash

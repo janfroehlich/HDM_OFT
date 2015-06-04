@@ -2,6 +2,8 @@
 
 source _scriptconf.bash
 
+cd "${MATLAB_CODE_DIRECTORY}"
+
 
 while ( true ); do
 	for dir in $(ls "${UPLOADS_DIRECTORY}"); do
