@@ -451,7 +451,7 @@ function OFT_IDTProfileFileName = WriteIDTProfileAndStatEntry...
     end
 
     fin = fopen(strcat(OFT_Env.OFT_ConstraintsPath,'/IDT_Template.txt'));
-    idtCreationDateStr=datestr(now,'yyyy mm dd HH.MM.SS.FFF AM');
+    idtCreationDateStr=datestr(now,'yyyy-mm-dd_HH.MM.SS.FFF');
     OFT_IDT_File=strcat(OFT_Env.OFT_ProcessPath,'/IDT_',IlluminantStr,'_',idtCreationDateStr,'.ctl');
     fout = fopen(OFT_IDT_File,'wt');
 
