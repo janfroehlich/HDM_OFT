@@ -32,7 +32,9 @@ min(float a, float b)
 float
 clip(float v)
 {
-    return min(v,1.0);
+    //cliping deactivated for now to prevent clip of specular highlights in linear files.
+    //return min(v,1.0);
+    return v;
 }
 
 float
@@ -56,13 +58,13 @@ void main
 
     // camera system white balancing and scaling factors
 %const float b[] = { b1, b2, b3 };
-    
+
     // matrix converting white balanced scaled camera system RGB response values
     // to ACES RGB relative exposure values
 %const float B1[][] =     {{ B11, B12, B13 },
 %const float B2[][] =     { B21, B22, B23 },
 %const float B3[][] =     { B31, B32, B33 }};
-                            
+
     const float b_min = min(b[0],min(b[1],b[2]));
     const float e_max = 1.0;
     const float k = 1.0;
