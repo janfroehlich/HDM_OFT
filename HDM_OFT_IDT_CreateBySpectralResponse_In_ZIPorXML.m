@@ -13,7 +13,7 @@ if(~exist('OFT_In_ClientData','var'))
     
     %test production
     OFT_In_ClientData=strcat(OFT_Env.OFT_RootScriptDir,'/testData/testproduktion/16042015/ClientDataSample/',OFT_In_TaskID,...        
-        '/AA+ZUP40/AA+ZUP40.xml');
+        '/AA+ZUP40/AA+ZUP40cc.xml');
     
     %'/AA+BUL25/AA+BUL25.xml');
     %'/AA+BUL75/AA+BUL75.xml');
@@ -64,14 +64,21 @@ end
 
 OFT_ProgressLogger.LogUserMessage('estimate camera spectral response');
 
-OFT_CameraResponse=HDM_OFT_CameraSpectralResponse(IDTTaskData);
 
-OFT_CameraReponseFile='/cameraResponse.csv';    
-IDTTaskData.SpectralResponse_Out_SpectralResponseFile=strcat(OFT_Env.OFT_ProcessPath,'/',OFT_CameraReponseFile);
-csvwrite(IDTTaskData.SpectralResponse_Out_SpectralResponseFile, OFT_CameraResponse');%//!!!why here
-copyfile(IDTTaskData.SpectralResponse_Out_SpectralResponseFile, OFT_In_ServerOutDir);   
+% Decide use case: Spectral or color checker based method
+if isempty(IDTTaskData.SpectralResponse_In_LineCalibrationSpectrum) && isempty(IDTTaskData.SpectralResponse_In_LineCalibrationImage) && isempty(IDTTaskData.SpectralResponse_In_LightCalibrationSpectrum)
+    IDTTaskData.SpectralResponse_Out_SpectralResponseFile=IDTTaskData.SpectralResponse_In_LightCalibrationImage;
+else
+    OFT_CameraResponse=HDM_OFT_CameraSpectralResponse(IDTTaskData);
 
-disp(strcat('camera spectral response file: ',IDTTaskData.SpectralResponse_Out_SpectralResponseFile));
+    OFT_CameraReponseFile='/cameraResponse.csv';    
+    IDTTaskData.SpectralResponse_Out_SpectralResponseFile=strcat(OFT_Env.OFT_ProcessPath,'/',OFT_CameraReponseFile);
+    csvwrite(IDTTaskData.SpectralResponse_Out_SpectralResponseFile, OFT_CameraResponse');%//!!!why here
+    copyfile(IDTTaskData.SpectralResponse_Out_SpectralResponseFile, OFT_In_ServerOutDir);   
+
+    disp(strcat('camera spectral response file: ',IDTTaskData.SpectralResponse_Out_SpectralResponseFile));
+end
+
 
 OFT_ProgressLogger.LogUserMessage('compute IDT profiles');    
 

@@ -73,10 +73,10 @@ OFT_LightSpecPrefix='';
 OFT_LineImgPrefix='';
 OFT_LightImgPrefix='';
 
-IDTTaskData.SpectralResponse_In_LineCalibrationSpectrum=strcat(OFT_ClientDataDir,strcat(OFT_LineSpecPrefix,GetXMLNodeVal(thisListitem,'LineCalibrationSpectrum')));
-IDTTaskData.SpectralResponse_In_LineCalibrationImage=strcat(OFT_ClientDataDir,strcat(OFT_LineImgPrefix,GetXMLNodeVal(thisListitem,'LineCalibrationImage')));
-IDTTaskData.SpectralResponse_In_LightCalibrationSpectrum=strcat(OFT_ClientDataDir,strcat(OFT_LightSpecPrefix,GetXMLNodeVal(thisListitem,'LightCalibrationSpectrum')));
-IDTTaskData.SpectralResponse_In_LightCalibrationImage=strcat(OFT_ClientDataDir,strcat(OFT_LightImgPrefix,GetXMLNodeVal(thisListitem,'LightCalibrationImage')));
+IDTTaskData.SpectralResponse_In_LineCalibrationSpectrum=GetXMLNodeValOrExmptyString(thisListitem, 'LineCalibrationSpectrum', strcat(OFT_ClientDataDir, OFT_LineSpecPrefix));
+IDTTaskData.SpectralResponse_In_LineCalibrationImage=GetXMLNodeValOrExmptyString(thisListitem, 'LineCalibrationImage', strcat(OFT_ClientDataDir, OFT_LineImgPrefix));
+IDTTaskData.SpectralResponse_In_LightCalibrationSpectrum=GetXMLNodeValOrExmptyString(thisListitem,'LightCalibrationSpectrum', strcat(OFT_ClientDataDir, OFT_LightSpecPrefix));
+IDTTaskData.SpectralResponse_In_LightCalibrationImage=GetXMLNodeValOrExmptyString(thisListitem,'LightCalibrationImage', strcat(OFT_ClientDataDir, OFT_LightImgPrefix));
 
 OFT_ClientParamsDOM_Log = OFT_ClientParamsDOM.getElementsByTagName('IDTCreationConstraints');
 OFT_ClientParamsDOM_In = OFT_ClientParamsDOM_Log.item(0).getElementsByTagName('In');
@@ -120,6 +120,24 @@ thisList = thisListitem.getElementsByTagName(nodeName);
 retVal=char(thisList.item(0).getFirstChild.getData);
 catch
     error('Unable to parse XML Node %s.',nodeName);    
+end
+
+end
+
+
+%//!!! Hack around error when delivery color checker based XML with empty
+%nodes
+function retVal=GetXMLNodeValOrExmptyString(thisListitem, nodeName, prefix)
+
+try
+thisList = thisListitem.getElementsByTagName(nodeName);
+if isempty(char(thisList.item(0).getFirstChild.getData))
+    retVal='';
+else
+    retVal=strcat(prefix, char(thisList.item(0).getFirstChild.getData));
+end
+catch
+    retVal='';
 end
 
 end

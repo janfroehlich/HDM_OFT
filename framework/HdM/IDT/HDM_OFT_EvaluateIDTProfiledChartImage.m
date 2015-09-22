@@ -124,7 +124,6 @@ subplot(1,2,2),imshow(sRGBDeLinearize(OFT_TransformedImage2ViewBConv.*0.28672));
 %%
 
 OFT_TransformedImage2View=OFT_TransformedImage2ViewBConv;
-return ;%//!!!
 
 ImageForPatchDetection=HDM_OFT_ImageExportImport.ImportImage(OFT_In_CameraMeasurement, OFT_In_PreLinearisationCurve);
 [OFT_cameraImageOfTestChart_PatchLocations,OFT_cameraImageOfTestChart_PatchColours] = CCFind(double(ImageForPatchDetection));%//!!!

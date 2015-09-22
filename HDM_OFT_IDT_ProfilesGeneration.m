@@ -1,7 +1,11 @@
 function OFT_IDTFiles=HDM_OFT_IDT_ProfilesGeneration...
     (IDTTaskData)
 
-OFT_Illuminations={'D65'};%//!!!{'D65' , IDTTaskData.SpectralResponse_In_LightCalibrationSpectrum};
+if isempty(IDTTaskData.SpectralResponse_In_LightCalibrationSpectrum)
+    OFT_Illuminations={IDTTaskData.IDTCreationConstraints_In_WhitePoint};
+else
+    OFT_Illuminations={IDTTaskData.IDTCreationConstraints_In_WhitePoint, IDTTaskData.SpectralResponse_In_LightCalibrationSpectrum};
+end
 
 OFT_IDTFiles=cell(size(OFT_Illuminations));
 
@@ -45,19 +49,19 @@ OFT_SpectralDataBasedTransformedImage2View=HDM_OFT_EvaluateIDTProfiledChartImage
   (OFT_IDT_B_TechTest, OFT_IDT_b ,IDTTaskData.Evaluation_In_TestImage,IDTTaskData.PreLinearisation_Out_LinCurve, 'D50',...%IDTTaskData.SpectralResponse_In_LightCalibrationSpectrum,...//!!!
    HDM_OFT_IDT_ReferenceCamera.CIEType(),HDM_OFT_ColorNeutralCompensations.NoneType(),HDM_OFT_CIEStandard.StandardObserver1931_2Degrees());
 
-% HDM_OFT_Utils.OFT_DispSubTitle('create annex b idt profile for technical xyz based evaluation');
-% 
-% [OFT_IDTFile_TechTestAnnexB, OFT_IDT_B_TechTestAnnexB, OFT_IDT_b]=...
-%     HDM_OFT_IDT_MinimumError...
-%     (IDTTaskData.IDTCreationConstraints_In_PatchSet,...
-%     IDTTaskData.Evaluation_In_TestImage,IDTTaskData.PreLinearisation_Out_LinCurve, HDM_OFT_ColorNeutralCompensations.NoneType(),...%//!!!
-%     IDTTaskData.IDTCreationConstraints_In_ErrorMinimizationDomain,IDTTaskData.SpectralResponse_In_LightCalibrationSpectrum,...
-%     HDM_OFT_IDT_ReferenceCamera.CIEType(),HDM_OFT_CIEStandard.StandardObserver1931_2Degrees());
-% 
-% HDM_OFT_EvaluateIDTProfiledChartImage...
-%     (OFT_IDT_B_TechTestAnnexB, OFT_IDT_b,IDTTaskData.Evaluation_In_TestImage,IDTTaskData.PreLinearisation_Out_LinCurve, 'D50',...%IDTTaskData.SpectralResponse_In_LightCalibrationSpectrum,...//!!!
-%     HDM_OFT_IDT_ReferenceCamera.CIEType(),HDM_OFT_ColorNeutralCompensations.NoneType(),HDM_OFT_CIEStandard.StandardObserver1931_2Degrees());%, OFT_SpectralDataBasedTransformedImage2View);
-% 
+HDM_OFT_Utils.OFT_DispSubTitle('create annex b idt profile for technical xyz based evaluation');
+
+[OFT_IDTFile_TechTestAnnexB, OFT_IDT_B_TechTestAnnexB, OFT_IDT_b]=...
+    HDM_OFT_IDT_MinimumError...
+    (IDTTaskData.IDTCreationConstraints_In_PatchSet,...
+    IDTTaskData.Evaluation_In_TestImage,IDTTaskData.PreLinearisation_Out_LinCurve, HDM_OFT_ColorNeutralCompensations.NoneType(),...%//!!!
+    IDTTaskData.IDTCreationConstraints_In_ErrorMinimizationDomain,IDTTaskData.SpectralResponse_In_LightCalibrationSpectrum,...
+    HDM_OFT_IDT_ReferenceCamera.CIEType(),HDM_OFT_CIEStandard.StandardObserver1931_2Degrees());
+
+HDM_OFT_EvaluateIDTProfiledChartImage...
+    (OFT_IDT_B_TechTestAnnexB, OFT_IDT_b,IDTTaskData.Evaluation_In_TestImage,IDTTaskData.PreLinearisation_Out_LinCurve, 'D50',...%IDTTaskData.SpectralResponse_In_LightCalibrationSpectrum,...//!!!
+    HDM_OFT_IDT_ReferenceCamera.CIEType(),HDM_OFT_ColorNeutralCompensations.NoneType(),HDM_OFT_CIEStandard.StandardObserver1931_2Degrees());%, OFT_SpectralDataBasedTransformedImage2View);
+
 
 HDM_OFT_Utils.OFT_DispTitle('finish IDT profile creation');
 

@@ -48,7 +48,7 @@ else
     disp(OFT_In_ErrorMinimizationDomain);  
 end
 
-if(exist('OFT_In_IlluminantSpectrum','var')==0)
+if(exist('OFT_In_IlluminantSpectrum','var')==0 || isempty(OFT_In_IlluminantSpectrum))
     disp('using default neutral compensation');   
     OFT_IlluminantSpectrum='D55';    
 else
