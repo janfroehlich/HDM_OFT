@@ -13,7 +13,11 @@ if(~exist('OFT_In_ClientData','var'))
     
     %test production
     OFT_In_ClientData=strcat(OFT_Env.OFT_RootScriptDir,'/testData/testproduktion/16042015/ClientDataSample/',OFT_In_TaskID,...        
-        '/AA+ZUP40/AA+ZUP40cc.xml');
+        '/AA+ZUP40/AA+ZUP40-cc_testimage-clean.xml');
+    
+    %'/AA+ZUP40/AA+ZUP40-nocc.xml');
+    
+    % '/AA+ZUP40/AA+ZUP40-cc_testimage-clean.xml');
     
     %'/AA+BUL25/AA+BUL25.xml');
     %'/AA+BUL75/AA+BUL75.xml');

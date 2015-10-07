@@ -49,8 +49,12 @@ OFT_SpectralDataBasedTransformedImage2View=HDM_OFT_EvaluateIDTProfiledChartImage
   (OFT_IDT_B_TechTest, OFT_IDT_b ,IDTTaskData.Evaluation_In_TestImage,IDTTaskData.PreLinearisation_Out_LinCurve, 'D50',...%IDTTaskData.SpectralResponse_In_LightCalibrationSpectrum,...//!!!
    HDM_OFT_IDT_ReferenceCamera.CIEType(),HDM_OFT_ColorNeutralCompensations.NoneType(),HDM_OFT_CIEStandard.StandardObserver1931_2Degrees());
 
+
 HDM_OFT_Utils.OFT_DispSubTitle('create annex b idt profile for technical xyz based evaluation');
 
+% !!!  Hacky try block to kill exception-exit in case of a non-colorchecker
+% image as TestImage
+try 
 [OFT_IDTFile_TechTestAnnexB, OFT_IDT_B_TechTestAnnexB, OFT_IDT_b]=...
     HDM_OFT_IDT_MinimumError...
     (IDTTaskData.IDTCreationConstraints_In_PatchSet,...
@@ -61,7 +65,11 @@ HDM_OFT_Utils.OFT_DispSubTitle('create annex b idt profile for technical xyz bas
 HDM_OFT_EvaluateIDTProfiledChartImage...
     (OFT_IDT_B_TechTestAnnexB, OFT_IDT_b,IDTTaskData.Evaluation_In_TestImage,IDTTaskData.PreLinearisation_Out_LinCurve, 'D50',...%IDTTaskData.SpectralResponse_In_LightCalibrationSpectrum,...//!!!
     HDM_OFT_IDT_ReferenceCamera.CIEType(),HDM_OFT_ColorNeutralCompensations.NoneType(),HDM_OFT_CIEStandard.StandardObserver1931_2Degrees());%, OFT_SpectralDataBasedTransformedImage2View);
+catch
+    HDM_OFT_Utils.OFT_DispSubTitle('   !!! Error. Maybe no Color Checker image as Test Image. Could be ignored !!!');
+end
 
+% !!! Hack End
 
 HDM_OFT_Utils.OFT_DispTitle('finish IDT profile creation');
 
