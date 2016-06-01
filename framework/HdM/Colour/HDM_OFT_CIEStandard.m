@@ -43,12 +43,10 @@ classdef HDM_OFT_CIEStandard
         
         if(exist('default','var')==0)
             figure
-            plot(OFT_CIE31_WaveLength,OFT_StandardObserver_x)
-            plot(OFT_CIE31_WaveLength,OFT_StandardObserver_y)
-            plot(OFT_CIE31_WaveLength,OFT_StandardObserver_z)
+            plot(OFT_CIE31_WaveLength,OFT_StandardObserver_x,OFT_CIE31_WaveLength,OFT_StandardObserver_y,OFT_CIE31_WaveLength,OFT_StandardObserver_z)
             xlabel('wavelength in nm')
-            ylabel('relative power')
-            title(strcat('Daylight estimation for ',num2str(OFT_DaylightTemperature),' K'));
+            ylabel('relative response')
+            title(strcat('Observer Curves'));
         end        
         
         end
